@@ -6,15 +6,11 @@ class Teacher
 {
 private:
     std::string m_name{};
-    std::vector<std::reference_wrapper<const std::string>> m_name_vector{};
 public:
+    Teacher(); // default constructor
+
     Teacher(const std::string& name)
         : m_name{ name }
-    {
-    }
-
-    Teacher(std::reference_wrapper<const std::string> name)
-        :m_name_vector{ name }
     {
     }
 
@@ -23,24 +19,23 @@ public:
         return m_name;
     }
 
-    void addd(std::reference_wrapper<const std::string> name)
-    {
-        m_name_vector.push_back(name);
-    }
-
-    void print(std::reference_wrapper<const std::string> name)
+/*
+    void print(std::reference_wrapper<const Teacher> name)
     {
         for(auto name : m_name_vector)
         {
             std::cout << name.get() << ' ' << '\n';
         }
     }
+*/
 };
 
-class Department : private Teacher
+class Department
 {
 private:
     Teacher& m_teacher; // This dept holds only one teacher for simplicity, but it could hold many teachers
+    //std::vector<std::reference_wrapper<const Teacher>> m_name_vector{};
+
 public:
     Department(); // default constructor;
 
@@ -48,16 +43,12 @@ public:
         : m_teacher{ teacher }
     {
     }
-
-
-    void add(Teacher& teacher)
-    {
-        std::reference_wrapper<const std::string> oko;
-
-        //teacher.m_name_vector = oko;
-
-        //m_teacher.addd(oko);
+/*
+    void add(Teacher name)
+    { 
+        m_name_vector.push_back(name);
     }
+*/
 /*
     friend std::ostream& operator<<(std::ostream& out, const Department& department)
     {
@@ -174,17 +165,18 @@ int main()
     */
 
     // Create a teacher outside the scope of the Department
+ /*
     Teacher t1{ "Bob" };
     Teacher t2{ "Frank" };
     Teacher t3{ "Beth" };
-
+*/
     {
         // Create a department and add some Teachers to it
-        Department department_Quiz{};// create an empty Department
+        //Department department_Quiz{};// create an empty Department
 
-        department_Quiz.add(t1);
-        department_Quiz.add(t2);
-        department_Quiz.add(t3);
+        //department_Quiz.add(t1);
+        //department_Quiz.add(t2);
+        //department_Quiz.add(t3);
 
 
 

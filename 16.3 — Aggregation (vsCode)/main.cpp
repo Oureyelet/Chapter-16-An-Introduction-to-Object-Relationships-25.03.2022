@@ -165,11 +165,11 @@ int main()
     */
 
     // Create a teacher outside the scope of the Department
- /*
+ 
     Teacher t1{ "Bob" };
     Teacher t2{ "Frank" };
     Teacher t3{ "Beth" };
-*/
+
     {
         // Create a department and add some Teachers to it
         //Department department_Quiz{};// create an empty Department

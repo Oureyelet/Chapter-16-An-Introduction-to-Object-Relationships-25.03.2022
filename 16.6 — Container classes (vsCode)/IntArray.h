@@ -24,6 +24,24 @@ public:
         }
     }
 
+    void printOn(std::ostream& out) const
+    {
+        if(m_lenght == 0)
+            out << "Empty array" << '\n';
+
+        for(int index{ 0 }; index < m_lenght; ++index)
+        {
+            out << m_data[index] << ' ';
+        }
+        out << '\n';
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const IntArray array)
+    {
+        array.printOn(out);
+        return out;
+    }
+
     ~IntArray()
     {
         delete[] m_data;
@@ -141,6 +159,37 @@ public:
         m_lenght = m_lenght + 1;
 
     }
+
+    void remove(int index)
+    {
+        // Sanity check our index value
+        assert(index >= 0 && index < m_lenght);
+
+        // If this is the last remaining element in the array, set the array to empty and bail out
+        if(m_lenght == 1)
+        {
+            erase();
+            return;
+        }
+
+        // First create a new array one element smaller than the old array
+        int* data{ new int{m_lenght - 1} };
+
+        // Copy all of the elements up to the index
+        for(int before{ 0 }; before < index; ++before)
+            data[before] = m_data[before];
+
+        // Copy all of the values after the removed element
+        for(int after{ index + 1 }; after < m_lenght; ++after)
+            data[ after - 1 ] = m_data[ after ];
+    
+        delete[] m_data;
+        m_data = data;
+        --m_lenght;
+    }
+
+    void insertAtBeginning(int value) { insertBefore(value, 0); }
+    void insertAtEnd(int value) { insertBefore(value, m_lenght); }
 };
 
 #endif // end INTARRAY_H

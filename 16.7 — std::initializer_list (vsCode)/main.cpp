@@ -48,11 +48,75 @@ public:
 
     int getLength() const { return m_length; }
 
+    IntArray& operator=(std::initializer_list<int> array);
+    
+
+
 };
+
+IntArray& IntArray::operator=(IntArray& array)
+{
+    
+
+    return *this;
+}
+
 
 int main()
 {
     std::cout << "Hello World" << '\n';
+
+    IntArray array2{ 5, 4, 3, 2, 1 }; // initializer list
+    for(int i{ 0 }; i < array2.getLength(); ++i)
+        std::cout << array2[i] << ' ';
+    std::cout << '\n';
+
+    //Class assignment using std::initializer_list:
+
+    //Summary:
+
+    //Quiz Time:
+    /*
+    Question #1
+
+    Using the IntArray class above, implement an overloaded assignment operator that takes an initializer list.
+
+    The following code should run:
+
+    int main()
+    {
+        IntArray array { 5, 4, 3, 2, 1 }; // initializer list
+        for (int count{ 0 }; count < array.getLength(); ++count)
+            std::cout << array[count] << ' ';
+
+        std::cout << '\n';
+
+        array = { 1, 3, 5, 7, 9, 11 };
+
+        for (int count{ 0 }; count < array.getLength(); ++count)
+            std::cout << array[count] << ' ';
+
+        std::cout << '\n';
+
+        return 0;
+    }
+    */
+
+    IntArray array { 5, 4, 3, 2, 1 }; // initializer list
+    for (int count{ 0 }; count < array.getLength(); ++count)
+        std::cout << array[count] << ' ';
+
+    std::cout << '\n';
+
+    array = { 1, 3, 5, 7, 9, 11 };
+
+    for (int count{ 0 }; count < array.getLength(); ++count)
+        std::cout << array[count] << ' ';
+
+    std::cout << '\n';
+    
+
+
 
     
 

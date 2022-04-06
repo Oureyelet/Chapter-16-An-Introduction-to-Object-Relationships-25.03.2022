@@ -113,11 +113,11 @@ int main()
     Question #1
 
     Would you be more likely to implement the following as a composition or an aggregation?
-    a) A ball that has a color = com
-    b) An employer that is employing multiple people = agg
-    c) The departments in a university = com
-    d) Your age = com
-    e) A bag of marbles = agg
+    a) A ball that has a color = composition
+    b) An employer that is employing multiple people = aggregation
+    c) The departments in a university = composition
+    d) Your age = composition
+    e) A bag of marbles = aggregation
     */
 
     /*

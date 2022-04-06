@@ -54,9 +54,24 @@ public:
 
 };
 
-IntArray& IntArray::operator=(IntArray& array)
+IntArray& IntArray::operator=(std::initializer_list<int> array)
 {
-    
+    // If the new list is a different size, reallocate it
+    int length{ static_cast<int>(array.size()) };
+    if(length != m_length)
+    {
+        delete[] m_data;
+        m_length = length;
+        m_data = new int[length]{};
+    }
+
+    // Now initialize our array from the list
+    int count{ 0 };
+    for(auto element : array)
+    {
+        m_data[count] = element;
+        ++count;
+    }
 
     return *this;
 }
